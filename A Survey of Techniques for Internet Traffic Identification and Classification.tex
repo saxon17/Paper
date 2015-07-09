@@ -126,7 +126,7 @@
 % *** GRAPHICS RELATED PACKAGES ***
 %
 \ifCLASSINFOpdf
-  % \usepackage[pdftex]{graphicx}
+   \usepackage[pdftex]{graphicx}
   % declare the path(s) where your graphic files are
   % \graphicspath{{../pdf/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
@@ -406,9 +406,10 @@
 %
 
 \author{Mingwei~Wei,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
-\thanks{M. Wei is with the Department
+\thanks{Mingwei Wei is with the Department
 of Computer Science and Technology, Beijing Institute of Technology, Beijing,
-100081 China (phone: 152 0161 3264; e-mail: weimw0417@163.com.)}}
+100081 China (phone: 152-0161-3264; e-mail: weimw0417@163.com.)}
+\thanks{Manuscript received July 25, 2015;}}
 
 % note the % following the last \IEEEmembership and also \thanks -
 % these prevent an unwanted space from occurring between the last author name
@@ -464,7 +465,7 @@ of Computer Science and Technology, Beijing Institute of Technology, Beijing,
 
 \begin{abstract}
 %\boldmath
-The techniques for internet traffic identification and classification are developing rapidly in recent years,
+The techniques for internet traffic identification and classification are developed rapidly in recent years,
 as it widely used in network management, monitor, design, security and research.
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
@@ -705,8 +706,11 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 %\begin{biography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
 % or if you just want to reserve a space for a photo:
 
-\begin{IEEEbiography}{Michael Shell}
-Biography text here.
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{author}}]{Mingwei Wei,}
+is the corresponding author of this paper.
+He is working on master's degree in Network and Information Security Lab in school of computing in Beijing Institute of Technology.
+His tutor are Mingzhong Wang and Liehuang Zhu.
+His research interests include network security, business process management and traffic analysis.
 \end{IEEEbiography}
 
 % if you will not have a photo at all:
