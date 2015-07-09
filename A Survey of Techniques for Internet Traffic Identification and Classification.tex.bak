@@ -407,7 +407,7 @@
 
 \author{Mingwei~Wei,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
 \thanks{M. Wei is with the Department
-of Computer Science and Technology, Beijing Institute of Technology, Beijing,
+of Computer Science and Technology, Beijing Institute of Technology, Beijing, 
 100081 China (phone: 152 0161 3264; e-mail: weimw0417@163.com.)}}
 
 % note the % following the last \IEEEmembership and also \thanks -
@@ -475,7 +475,7 @@ The abstract goes here.
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-traffic identification, traffic classification, challenges, remarks.
+IEEEtran, journal, \LaTeX, paper, template.
 \end{IEEEkeywords}
 
 
