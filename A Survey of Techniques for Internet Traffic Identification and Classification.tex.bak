@@ -393,7 +393,7 @@
 %
 % paper title
 % can use linebreaks \\ within to get better formatting as desired
-\title{A Survey of Techniques for Internet Traffic Identification and Classification}
+\title{Bare Demo of IEEEtran.cls for Journals}
 %
 %
 % author names and IEEE memberships
@@ -405,10 +405,14 @@
 % was not built to handle multiple paragraphs
 %
 
-\author{Mingwei~Wei,~\IEEEmembership{Member,~IEEE}% <-this % stops a space
-\thanks{M. Wei is with the Department
-of Computer Science and Technology, Beijing Institute of Technology, Beijing, 
-100081 China (phone: 152 0161 3264; e-mail: weimw0417@163.com.)}}
+\author{Michael~Shell,~\IEEEmembership{Member,~IEEE,}
+        John~Doe,~\IEEEmembership{Fellow,~OSA,}
+        and~Jane~Doe,~\IEEEmembership{Life~Fellow,~IEEE}% <-this % stops a space
+\thanks{M. Shell is with the Department
+of Electrical and Computer Engineering, Georgia Institute of Technology, Atlanta,
+GA, 30332 USA e-mail: (see http://www.michaelshell.org/contact.html).}% <-this % stops a space
+\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
+\thanks{Manuscript received April 19, 2005; revised January 11, 2007.}}
 
 % note the % following the last \IEEEmembership and also \thanks -
 % these prevent an unwanted space from occurring between the last author name
@@ -464,7 +468,7 @@ of Computer Science and Technology, Beijing Institute of Technology, Beijing,
 
 \begin{abstract}
 %\boldmath
-The abstract goes here.
+The abstract goes here.sghfdsgfddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddg
 \end{abstract}
 % IEEEtran.cls defaults to using nonbold math in the Abstract.
 % This preserves the distinction between vectors and scalars. However,
