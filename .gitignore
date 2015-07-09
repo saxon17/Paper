@@ -43,8 +43,8 @@ Temporary Items
 .apdisk
 
 # ADD
-.aux
-.bbl
-.blg
-.log
-.bak
+*.aux
+*.bbl
+*.blg
+*.log
+*.bak
