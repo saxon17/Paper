@@ -487,10 +487,6 @@ traffic identification, traffic classification, challenges, application detectio
 \end{IEEEkeywords}
 
 
-
-
-
-
 % For peer review papers, you can put extra information on the cover
 % page as needed:
 % \ifCLASSOPTIONpeerreview
@@ -500,8 +496,6 @@ traffic identification, traffic classification, challenges, application detectio
 % For peerreview papers, this IEEEtran command inserts a page break and
 % creates the second title. It will be ignored for other modes.
 \IEEEpeerreviewmaketitle
-
-
 
 \section{Introduction}
 % The very first letter is a 2 line initial drop letter followed
@@ -519,21 +513,28 @@ traffic identification, traffic classification, challenges, application detectio
 %
 % Here we have the typical use of a "T" for an initial drop letter
 % and "HIS" in caps to complete the first word.
-\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
-for IEEE journal papers produced under \LaTeX\ using
-IEEEtran.cls version 1.7 and later.
-% You must have at least 2 lines in the paragraph with the drop letter
-% (should never be an issue)
-I wish you the best of success.
+\IEEEPARstart{W}{ith} the development of Internet technology and the advent of the era of mobile Internet, our life has been inseparable from the Internet nowadays.
+According to the 35th statistical report on development of Internet in China published by CNNIC \cite{IEEEhowto:CNNIC}, the Internet users of China have reached 6.49 hundred million by the end of 2014.
 
-%\begin{figure}[!h]
-%\includegraphics[scale=0.4]{Internet population of China.pdf}
-%\caption{Internet population of China}
-%\end{figure}
+\par
+As shown in Fig. 1, the Internet population of China has been increasing rapidly in recent years, almost half of Chinese people are using Internet for work or daily life.
 
-\hfill mds
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.42]{Figure/Internet_Popular_of_China.jpg}
+\centering
+\caption{Internet population of China}
+\end{figure}
 
-\hfill January 11, 2007
+\par
+As shown in Fig. 2, the Internet Penetration of China is higher and higher over the years, more and more people felt the charm of the Internet, and the Internet has penetrated into all walks of life of people.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.4]{Figure/Internet_Penetration_of_China.jpg}
+\caption{Internet population of China}
+\end{figure}
+
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -698,12 +699,13 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{1}
-
+\begin{thebibliography}{2}
 \bibitem{IEEEhowto:kopka}
 H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
   0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
+\bibitem{IEEEhowto:CNNIC}
+CNNIC: Statistics Report of Development of China Internet Network. (Jan 2015). [Online]. Available:
+http://www.cnnic.cn/hlwfzyj/hlwxzbg /201502/P020150203551802054676.pdf
 \end{thebibliography}
 
 % biography section
