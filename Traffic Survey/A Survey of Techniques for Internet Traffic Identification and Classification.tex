@@ -521,7 +521,7 @@ As shown in Fig. 1, the Internet population of China has been increasing rapidly
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.42]{Figure/Internet_Popular_of_China.jpg}
+\includegraphics[scale=0.41]{Figure/Internet_Popular_of_China.jpg}
 \centering
 \caption{Internet population of China}
 \end{figure}
@@ -572,6 +572,30 @@ Section IV and Section V focus on flow-based and host-based techniques and dwell
 Then it is followed by section VI with the general challenges of traffic identification and classification.
 Section VII makes some final remarks on traffic analysis and provides some recommendations for solving the current issues.
 Finally, we conclude the paper in section VIII.
+
+\section{Analysis of Port-based Techniques}
+
+The port-based technique is used to identify application according to TCP/UDP port number on transport layer protocol.
+In the early stage of Internet, applications use specific port to set up communication.
+Most of them used well-known port numbers assigned by IANA (The Internet Assigned Numbers Authority).
+Table I shows the most popular well-known port number and its corresponding services and protocols.
+
+\begin{table}[!ht]
+\renewcommand\arraystretch{1.5}
+\centering
+\caption{popular well-known port numbers}
+\begin{tabular}{c|c|c}
+\hline \makebox[13em]{APPLICATION/SERVICE}&\makebox[7em]{PROTOCOL}&\makebox[7em]{PORT-NO}\\
+\hline THUNDER&TCP/UDP&80,8000,8888\\
+\hline QQ&UDP&4000\\
+\hline SSH&TCP&22\\
+\hline FTP&TCP&20,21\\
+\hline WEB&TCP&80,443\\
+\hline TELNET&TCP&23\\
+\hline TOMCAT&TCP&8080\\
+\hline
+\end{tabular}
+\end{table}
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -785,17 +809,10 @@ His research interests include network security, business process management and
 \end{IEEEbiography}
 
 % if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
 
 % insert where needed to balance the two columns on the last page with
 % biographies
 %\newpage
-
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate
