@@ -602,6 +602,9 @@ To classify these applications or services, the port-based techniques only need 
 It finished tasks perfectly, as it assumes that most applications or services use well-known fixed TCP/UDP port number.
 However, with the popularity of port jump technique, the port-based techniques lost their effectiveness.
 The so called port jump technique refers to the applications use host port for communication without fixing port number or change port in the process of data transmission.
+For example, utorrent can choose the random non-hold port for data transmission automatically when it has just started, this approach makes port-based technique failure.
+Although port-based traffic identification and classification technique is easy to implement, it's also easy to circumvent.
+So it is rarely to use as a main traffic identification technique now, often as an auxiliary means of other traffic identification and classification technology. 
 
 \subsection{Subsection Heading Here}
 Subsection text here.
