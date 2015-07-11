@@ -521,7 +521,7 @@ As shown in Fig. 1, the Internet population of China has been increasing rapidly
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[scale=0.42]{Figure/Internet_Popular_of_China.jpg}
+\includegraphics[scale=0.41]{Figure/Internet_Popular_of_China.jpg}
 \centering
 \caption{Internet population of China}
 \end{figure}
@@ -558,7 +558,7 @@ On this occasion, malicious users transfer illegal data with a safe data transmi
 Therefore, to identify legal and illegal data from encrypted traffic and classify traffic according to its type and source becomes a new challenge in network and Internet security.
 
 \par
-The techniques for Internet traffic identification and classification have been evolved along with development of Internet protocols and applications, and many techniques have been proposed, including port-based techniques, payload-based techniques, flow-based techniques, host-based techniques and graph-based techniques.
+The techniques for Internet traffic identification and classification have been evolved along with development of Internet protocols and applications, and many techniques have been proposed, including port-based techniques \cite{mcpherson2004portvis}, payload-based techniques \cite{wang2004anomalous}, flow-based techniques \cite{kim2004flow}, host-based techniques \cite{karagiannis2005blinc} and graph-based techniques.
 Some of them have been maturely and widely deployed in the current network, and some of them are still under researching.
 But all the existing techniques still have their critical limitations and issues.
 In addition, the existing techniques are facing more and more challenges as Internet protocols are becoming safer and applications are becoming more sophisticated.
@@ -566,7 +566,82 @@ In this paper, we first present popular traffic identification and classificatio
 
 \par
 The rest of the paper is organized as follows.
+Section II explains port-based technique and analyzes its issues.
+Section III explains payload-based technique and presents its drawbacks.
+Section IV and Section V focus on flow-based and host-based techniques and dwell on their challenges.
+Then it is followed by section VI with the general challenges of traffic identification and classification.
+Section VII makes some final remarks on traffic analysis and provides some recommendations for solving the current issues.
+Finally, we conclude the paper in section VIII.
 
+\section{Analysis of Port-based Techniques}
+
+The port-based technique is used to identify application according to TCP/UDP port number on transport layer protocol.
+In the early stage of Internet, applications use specific port to set up communication.
+Most of them used well-known port numbers assigned by IANA (The Internet Assigned Numbers Authority).
+Table I shows the most popular well-known port number and its corresponding services and protocols.
+
+\begin{table}[!ht]
+\renewcommand\arraystretch{1.5}
+\centering
+\caption{popular well-known port numbers}
+\begin{tabular}{c|c|c}
+\hline \makebox[13em]{APPLICATION/SERVICE}&\makebox[7em]{PROTOCOL}&\makebox[7em]{PORT-NO}\\
+\hline THUNDER&TCP/UDP&80,8000,8888\\
+\hline QQ&UDP&4000\\
+\hline SSH&TCP&22\\
+\hline FTP&TCP&20,21\\
+\hline WEB&TCP&80,443\\
+\hline TELNET&TCP&23\\
+\hline TOMCAT&TCP&8080\\
+\hline
+\end{tabular}
+\end{table}
+
+\par
+To classify these applications or services, the port-based techniques only need to check source port number of IP data packet.
+It finished tasks perfectly, as it assumes that most applications or services use well-known fixed TCP/UDP port number.
+However, with the popularity of port jump technique, the port-based techniques lost their effectiveness.
+The so called port jump technique refers to the applications use host port for communication without fixing port number or change port in the process of data transmission.
+For example, utorrent can choose the random non-hold port for data transmission automatically when it has just started, this approach makes port-based technique failure.
+Although port-based traffic identification and classification technique is easy to implement, it's also easy to circumvent.
+So it is rarely to use as a main traffic identification technique now, often as an auxiliary means of other traffic identification and classification technology.
+
+
+\section{Analysis of Payload-based Techniques}
+
+In order to improve the low identification efficiency caused by the port jump technique, payload-based technique was proposed.
+Deep Packet Inspection (DPI) is one of typical approach in payload-based techniques, it compares data content and characteristics of rule set which is built in advance with feature matching algorithm, and set results of matching as the basis of identification.
+The item in characteristics of rule set includes type of data and feature string.
+Table II shows the popular payload characteristics of applications.
+
+\begin{table}[!ht]
+\renewcommand\arraystretch{1.5}
+\centering
+\caption{payload characteristics}
+\begin{tabular}{c|c}
+\hline \makebox[9em]{PROTOCOL}&\makebox[19em]{PAYLOAD}\\
+\hline HTTP&'GET' 'PUT' 'POST'\\
+\hline SSH&'SSH'\\
+\hline IRC&'USERHOST'\\
+\hline Kazza&'Z-Kazza'\\
+\hline BitTorrent&'\verb|\|x13BitTorrent protocol'\\
+\hline QQ Voice&'SIP/user-agent: Tencent-VQ'\\
+\hline Thunder&'\verb|\|x00\verb|\|x00\verb|\|x00\verb|\|x16\verb|\|x00\verb|\|x00\verb|\|x00\verb|\|x6a\verb|\|x01'\\
+\hline eMule&'\verb|\|xe3,\verb|\|xc5,\verb|\|xd4,\verb|\|xe4,\verb|\|xe5,\verb|\|xf1'\\
+\hline
+\end{tabular}
+\end{table}
+
+\par
+The precision and efficiency of DPI is decided by integrity of characteristics of rule set and feature matching algorithm.
+The feature matching algorithm includes one-mode and multi-mode.
+One-mode refers to one scan can only match one feature string, such as Knuth-Morris-Pratt algorithm \cite{knuth1977fast} and Boyer-Moore algorithm \cite{boyer1977fast}.
+Multi-mode refers to one scan can match a group of feature strings, such as Aho-Corasick algorithm \cite{aho1975efficient}, Commentz-Walter algorithm \cite{commentz1979string} and Aho-Corasick Boyer-Moore algorithm \cite{coit2001towards}.
+
+\section{analysis of flow-based techniques}
+
+Just as its name implies, the flow-based technique is built on flows formed by a series of data packets.
+It works by statistic
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -732,12 +807,56 @@ The authors would like to thank...
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
 \begin{thebibliography}{2}
-\bibitem{IEEEhowto:kopka}
-H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
 \bibitem{IEEEhowto:CNNIC}
 CNNIC: Statistics Report of Development of China Internet Network. (Jan 2015). [Online]. Available:
 http://www.cnnic.cn/hlwfzyj/hlwxzbg /201502/P020150203551802054676.pdf
+
+\bibitem{mcpherson2004portvis}
+J.~McPherson, K.-L. Ma, P.~Krystosk, T.~Bartoletti, and M.~Christensen,
+  ``Portvis: a tool for port-based detection of security events,'' in {\em
+  Proceedings of the 2004 ACM workshop on Visualization and data mining for
+  computer security}, pp.~73--81, ACM, 2004.
+
+\bibitem{wang2004anomalous}
+K.~Wang and S.~J. Stolfo, ``Anomalous payload-based network intrusion
+  detection,'' in {\em Recent Advances in Intrusion Detection}, pp.~203--222,
+  Springer, 2004.
+
+\bibitem{kim2004flow}
+A.-S. Kim, H.-J. Kong, S.-C. Hong, S.-H. Chung, and J.~W. Hong, ``A flow-based
+  method for abnormal network traffic detection,'' in {\em Network operations
+  and management symposium, 2004. NOMS 2004. IEEE/IFIP}, vol.~1, pp.~599--612,
+  IEEE, 2004.
+
+\bibitem{karagiannis2005blinc}
+T.~Karagiannis, K.~Papagiannaki, and M.~Faloutsos, ``Blinc: multilevel traffic
+  classification in the dark,'' in {\em ACM SIGCOMM Computer Communication
+  Review}, vol.~35, pp.~229--240, ACM, 2005.
+
+\bibitem{knuth1977fast}
+D.~E. Knuth, J.~H. Morris, Jr, and V.~R. Pratt, ``Fast pattern matching in
+  strings,'' {\em SIAM journal on computing}, vol.~6, no.~2, pp.~323--350,
+  1977.
+
+\bibitem{boyer1977fast}
+R.~S. Boyer and J.~S. Moore, ``A fast string searching algorithm,'' {\em
+  Communications of the ACM}, vol.~20, no.~10, pp.~762--772, 1977.
+
+\bibitem{aho1975efficient}
+A.~V. Aho and M.~J. Corasick, ``Efficient string matching: an aid to
+  bibliographic search,'' {\em Communications of the ACM}, vol.~18, no.~6,
+  pp.~333--340, 1975.
+
+\bibitem{commentz1979string}
+B.~Commentz-Walter, {\em A string matching algorithm fast on the average}.
+\newblock Springer, 1979.
+
+\bibitem{coit2001towards}
+C.~J. Coit, S.~Staniford, and J.~McAlerney, ``Towards faster string matching
+  for intrusion detection or exceeding the speed of snort,'' in {\em DARPA
+  Information Survivability Conference \&amp; Exposition II, 2001. DISCEX'01.
+  Proceedings}, vol.~1, pp.~367--373, IEEE, 2001.
 
 \end{thebibliography}
 
@@ -760,17 +879,10 @@ His research interests include network security, business process management and
 \end{IEEEbiography}
 
 % if you will not have a photo at all:
-\begin{IEEEbiographynophoto}{John Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
 
 % insert where needed to balance the two columns on the last page with
 % biographies
 %\newpage
-
-\begin{IEEEbiographynophoto}{Jane Doe}
-Biography text here.
-\end{IEEEbiographynophoto}
 
 % You can push biographies down or up by placing
 % a \vfill before or after them. The appropriate
