@@ -609,21 +609,22 @@ So it is rarely to use as a main traffic identification technique now, often as 
 
 \section{Analysis of Payload-based Techniques}
 
-In order to 
+In order to
 
 \begin{table}[!ht]
 \renewcommand\arraystretch{1.5}
 \centering
-\caption{payload}
+\caption{payload characteristic}
 \begin{tabular}{c|c}
-\hline \makebox[10em]{PROTOCOL}&\makebox[18em]{PAYLOAD}\\
+\hline \makebox[9em]{PROTOCOL}&\makebox[19em]{PAYLOAD}\\
 \hline HTTP&'GET' 'PUT' 'POST'\\
 \hline SSH&'SSH'\\
 \hline IRC&'USERHOST'\\
 \hline Kazza&'Z-Kazza'\\
-\hline BitTorrent&'/x13BitTorrent protocol'\\
+\hline BitTorrent&'\verb|\|x13BitTorrent protocol'\\
 \hline QQ Voice&'SIP/user-agent: Tencent-VQ'\\
-\hline Thunder&''\\
+\hline Thunder&'\verb|\|x00\verb|\|x00\verb|\|x00\verb|\|x16\verb|\|x00\verb|\|x00\verb|\|x00\verb|\|x6a\verb|\|x01'\\
+\hline eMule&'\verb|\|xe3,\verb|\|xc5,\verb|\|xd4,\verb|\|xe4,\verb|\|xe5,\verb|\|xf1'\\
 \hline
 \end{tabular}
 \end{table}
