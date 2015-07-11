@@ -632,6 +632,12 @@ Table II shows the popular payload characteristics of applications.
 \end{tabular}
 \end{table}
 
+\par
+The precision and efficiency of DPI is decided by integrity of characteristics of rule set and feature matching algorithm.
+The feature matching algorithm includes one-mode and multi-mode.
+One-mode refers to one scan can only match one feature string, such as Knuth-Morris-Pratt algorithm \cite{knuth1977fast} and Boyer-Moore algorithm \cite{boyer1977fast}.
+Multi-mode refers to one scan can match a group of feature strings, such as Aho-Corasick algorithm \cite{aho1975efficient}, Commentz-Walter algorithm \cite{commentz1979string} and Aho-Corasick Boyer-Moore algorithm \cite{coit2001towards}.
+
 \subsection{Subsection Heading Here}
 Subsection text here.
 
@@ -822,6 +828,30 @@ A.-S. Kim, H.-J. Kong, S.-C. Hong, S.-H. Chung, and J.~W. Hong, ``A flow-based
 T.~Karagiannis, K.~Papagiannaki, and M.~Faloutsos, ``Blinc: multilevel traffic
   classification in the dark,'' in {\em ACM SIGCOMM Computer Communication
   Review}, vol.~35, pp.~229--240, ACM, 2005.
+
+\bibitem{knuth1977fast}
+D.~E. Knuth, J.~H. Morris, Jr, and V.~R. Pratt, ``Fast pattern matching in
+  strings,'' {\em SIAM journal on computing}, vol.~6, no.~2, pp.~323--350,
+  1977.
+
+\bibitem{boyer1977fast}
+R.~S. Boyer and J.~S. Moore, ``A fast string searching algorithm,'' {\em
+  Communications of the ACM}, vol.~20, no.~10, pp.~762--772, 1977.
+
+\bibitem{aho1975efficient}
+A.~V. Aho and M.~J. Corasick, ``Efficient string matching: an aid to
+  bibliographic search,'' {\em Communications of the ACM}, vol.~18, no.~6,
+  pp.~333--340, 1975.
+
+\bibitem{commentz1979string}
+B.~Commentz-Walter, {\em A string matching algorithm fast on the average}.
+\newblock Springer, 1979.
+
+\bibitem{coit2001towards}
+C.~J. Coit, S.~Staniford, and J.~McAlerney, ``Towards faster string matching
+  for intrusion detection or exceeding the speed of snort,'' in {\em DARPA
+  Information Survivability Conference \&amp; Exposition II, 2001. DISCEX'01.
+  Proceedings}, vol.~1, pp.~367--373, IEEE, 2001.
 
 \end{thebibliography}
 
