@@ -609,12 +609,15 @@ So it is rarely to use as a main traffic identification technique now, often as 
 
 \section{Analysis of Payload-based Techniques}
 
-In order to
+In order to improve the low identification efficiency caused by the port jump technique, payload-based technique was proposed.
+Deep Packet Inspection (DPI) is one of typical approach in payload-based techniques, it compares data content and characteristics of rule set which is built in advance with feature matching algorithm, and set results of matching as the basis of identification.
+The item in characteristics of rule set includes type of data and feature string.
+Table II shows the popular payload characteristics of applications.
 
 \begin{table}[!ht]
 \renewcommand\arraystretch{1.5}
 \centering
-\caption{payload characteristic}
+\caption{payload characteristics}
 \begin{tabular}{c|c}
 \hline \makebox[9em]{PROTOCOL}&\makebox[19em]{PAYLOAD}\\
 \hline HTTP&'GET' 'PUT' 'POST'\\
