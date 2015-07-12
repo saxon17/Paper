@@ -722,9 +722,29 @@ It takes values $i_t \in \{1, ..., s\}$, where it is either an SSL/TLS message t
 We assume that $X_t$ is a first-order Markov chain \cite{campbell1998hidden}:
 
 \begin{equation}
-$$ $P(X_t = i_t|X_{t-1}) = i_{t-1}, X_{t-2} = i_{t-2}, ..., X_1 = i_1) = P(X_t = i_t|X_{t-1} = i_{t-1})$ $$
+$$ $P(X_t = i_t|X_{t-1}) = i_{t-1}, X_{t-2} = i_{t-2}, ..., X_1 = i_1) = P(X_t = i_t|X_{t-1} = i_{t-1})$. $$
 \end{equation}
 
+We further assume that the Markov chain is homogeneous, i.e. a state transition from time $t-1$ to time $t$ is time-invariant:
+
+\begin{equation}
+$$ $P(X_t = i_t|X_{t-1} = i_{t_1}) = P(X_t = j|X_{t-1} = i) = p_{i-j}$, $$
+\end{equation}
+
+with the transition matrix \cite{campbell1998hidden}:
+
+\begin{equation}
+P = \left[ 
+\begin{array}{lccr}
+p_{1-1} & p_{1-2} & \cdots & p_{1-s}\\
+p_{2-1} & p_{2-2} & \cdots & p_{2-s}\\
+\vdots & \vdots & \ddots & \vdots\\
+p_{s-1} & p_{s-2} & \cdots & p_{s-s}
+\end{array}
+\right]
+\end{equation}
+
+where: $\sum$
 \subsection{Subsection Heading Here}
 Subsection text here.
 
