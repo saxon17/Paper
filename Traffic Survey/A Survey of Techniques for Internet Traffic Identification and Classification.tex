@@ -606,7 +606,6 @@ For example, utorrent can choose the random non-hold port for data transmission 
 Although port-based traffic identification and classification technique is easy to implement, it's also easy to circumvent.
 So it is rarely to use as a main traffic identification technique now, often as an auxiliary means of other traffic identification and classification technology.
 
-
 \section{Analysis of Payload-based Techniques}
 
 In order to improve the low identification efficiency caused by the port jump technique, payload-based technique was proposed.
@@ -633,10 +632,23 @@ Table II shows the popular payload characteristics of applications.
 \end{table}
 
 \par
-The precision and efficiency of DPI is decided by integrity of characteristics of rule set and feature matching algorithm.
+The precision and efficiency of DPI is decided by integrity of characteristics of rule set and feature matching algorithm, as shown in Fig. 3.
 The feature matching algorithm includes one-mode and multi-mode.
 One-mode refers to one scan can only match one feature string, such as Knuth-Morris-Pratt algorithm \cite{knuth1977fast} and Boyer-Moore algorithm \cite{boyer1977fast}.
 Multi-mode refers to one scan can match a group of feature strings, such as Aho-Corasick algorithm \cite{aho1975efficient}, Commentz-Walter algorithm \cite{commentz1979string} and Aho-Corasick Boyer-Moore algorithm \cite{coit2001towards}.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{Figure/Principle_of_Feature_Matching_Algorithm.jpg}
+\caption{Principle of Feature Matching Algorithm}
+\end{figure}
+
+Although the payload-based technique can solve the issue of random port, they cannot deal with the encryption protocols, because the signatures of these types of protocols can hardly be found.
+Generally, the main challenges resulting in issues are the encryption protocols, we list issues as follows.
+
+\subsection{Fail in encryption protocol}
+
+The encryption protocols 
 
 \section{analysis of flow-based techniques}
 
