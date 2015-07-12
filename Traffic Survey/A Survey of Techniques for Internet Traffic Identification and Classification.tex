@@ -675,13 +675,20 @@ Different from the two techniques mentioned in section II and section III, the f
 Therefore, the flow-based technique is suitable for common Internet traffic identification and classification as well as encrypted traffic.
 
 \par
-Most flow-based techniques use Machine Learning techniques as their identification or classification algorithms, such as Bayesian methods and SVM Support Vector Machnie.
+Most flow-based techniques use Machine Learning techniques as their identification or classification algorithms, such as Bayesian methods \cite{auld2007bayesian} and SVM Support Vector Machine \cite{yang2011smiler}.
+Most flow-based techniques contain two main stages: training stage and classifying stage, as shown in Fig. 4 and Fig. 5 respectively.
+At the training stage, the flow-based techniques use features extracted from the training data set to train identification and classification model.
 
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.75]{Figure/Process_of_Training.jpg}
 \caption{Process of Training}
 \end{figure}
+
+\par
+At the identification and classification stage, the flow-based techniques capture packets at first, then divide and refactor these packet to form flow.
+After that, extracting features to matching models obtained from training stage to determine the type of protocols and applications.
+In this way, it completes the traffic identification and classification task.
 
 \begin{figure}[!ht]
 \centering
@@ -905,7 +912,18 @@ C.~J. Coit, S.~Staniford, and J.~McAlerney, ``Towards faster string matching
   for intrusion detection or exceeding the speed of snort,'' in {\em DARPA
   Information Survivability Conference \&amp; Exposition II, 2001. DISCEX'01.
   Proceedings}, vol.~1, pp.~367--373, IEEE, 2001.
+  
+\bibitem{auld2007bayesian}
+T.~Auld, A.~W. Moore, and S.~F. Gull, ``Bayesian neural networks for internet
+  traffic classification,'' {\em Neural Networks, IEEE Transactions on},
+  vol.~18, no.~1, pp.~223--239, 2007.
 
+\bibitem{yang2011smiler}
+B.~Yang, G.~Hou, L.~Ruan, Y.~Xue, and J.~Li, ``Smiler: towards practical online
+  traffic classification,'' in {\em Proceedings of the 2011 ACM/IEEE Seventh
+  Symposium on Architectures for Networking and Communications Systems},
+  pp.~178--188, IEEE Computer Society, 2011.
+  
 \end{thebibliography}
 
 % biography section
