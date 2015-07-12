@@ -657,10 +657,15 @@ Therefore, the payload-based techniques lose their effectiveness when identifyin
 
 With the development of Internet bandwidth, the era of Terabit bandwidth has arrived.
 Nowadays, the traffic identification and classification systems usually have to handle Gigabits or Terabits of data per second, which is a critical challenge task for payload-based techniques.
+Due to payload-based techniques have to compare every packet content with characteristics of rule set until the protocol of the flow is determined, it needs higher processing capability to handle packets in high speed network.
 
+Furthermore, as more and more new protocols appear, the size of characteristics of rule set becomes larger and larger, so the payload-based techniques have to compare more signatures or regular expressions, the processing efficiency of payload-based techniques will drop rapidly.
 
 \section{analysis of flow-based techniques}
 
+As the protocols and applications are continuing to evolve, port-based and payload-based techniques lose their effectiveness to the new coming protocols, the flow-based techniques are proposed under this circumstances.
+
+\par
 Just as its name implies, the flow-based technique is built on flows formed by a series of data packets.
 It works by seeking and recording general law from data flow in a period of time.
 For example, through the observation, we found most of P2P applications are using TCP protocol and UDP protocol at the same time.
@@ -668,6 +673,21 @@ Besides, it transmits control information by UDP and file content by TCP.
 We use this law as the basis to identify the P2P application.
 Different from the two techniques mentioned in section II and section III, the flow-based technique only analyzes the data flow and it's indifferent to the content of packet.
 Therefore, the flow-based technique is suitable for common Internet traffic identification and classification as well as encrypted traffic.
+
+\par
+Most flow-based techniques use Machine Learning techniques as their identification or classification algorithms, such as Bayesian methods and SVM Support Vector Machnie.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.75]{Figure/Process_of_Training.jpg}
+\caption{Process of Training}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.66]{Figure/Process_of_Identification_or_Classification.jpg}
+\caption{Process of Identification or Classification}
+\end{figure}
 
 \section{analysis of host-based techniques}
 
