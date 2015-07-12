@@ -686,7 +686,7 @@ At the training stage, the flow-based techniques use features extracted from the
 \end{figure}
 
 \par
-At the identification and classification stage, the flow-based techniques capture packets at first, then divide and refactor these packet to form flow.
+At the identification and classification stage, the flow-based techniques capture packets at first, then divide and refactor these packets to form flow.
 After that, extracting features to matching models obtained from training stage to determine the type of protocols and applications.
 In this way, it completes the traffic identification and classification task.
 
@@ -709,6 +709,21 @@ In this way, it completes the traffic identification and classification task.
 \includegraphics[scale=0.66]{Figure/Process_of_Identification_or_Classification_host-based.jpg}
 \caption{Process of Training Stage in Host-based Techniques}
 \end{figure}
+
+More specifically, in 2014 Maciej proposed stochastic fingerprints for application traffic flows conveyed in Secure Socket Layer/Transport Layer Security (SSL/TLS) sessions \cite{korczynski2014markov}.
+The fingerprints are based on first-order homogeneous Markov chains for which it identifies the parameters from observed training application traces.
+As the fingerprint parameters of chosen applications considerably differ, the method results in a very good accuracy of application discrimination and provides a possibility of detecting abnormal SSL/TLS sessions.
+
+\par
+We consider discrete-time random variable $X_t$ for any $t = t_0, t_1, ..., t_n \in T$.
+It takes values $i_t \in \{1, ..., s\}$, where it is either an SSL/TLS message type (e.g. 22:2) or a sequence of the SSL/TLS message types transmitted in a single TCP segment (e.g. 22:11,22:14).
+
+\par
+We assume that $X_t$ is a first-order Markov chain \cite{campbell1998hidden}:
+
+\begin{equation}
+$$ $P(X_t = i_t|X_{t-1}) = i_{t-1}, X_{t-2} = i_{t-2}, ..., X_1 = i_1) = P(X_t = i_t|X_{t-1} = i_{t-1})$ $$
+\end{equation}
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -924,7 +939,7 @@ C.~J. Coit, S.~Staniford, and J.~McAlerney, ``Towards faster string matching
   for intrusion detection or exceeding the speed of snort,'' in {\em DARPA
   Information Survivability Conference \&amp; Exposition II, 2001. DISCEX'01.
   Proceedings}, vol.~1, pp.~367--373, IEEE, 2001.
-  
+
 \bibitem{auld2007bayesian}
 T.~Auld, A.~W. Moore, and S.~F. Gull, ``Bayesian neural networks for internet
   traffic classification,'' {\em Neural Networks, IEEE Transactions on},
@@ -935,7 +950,15 @@ B.~Yang, G.~Hou, L.~Ruan, Y.~Xue, and J.~Li, ``Smiler: towards practical online
   traffic classification,'' in {\em Proceedings of the 2011 ACM/IEEE Seventh
   Symposium on Architectures for Networking and Communications Systems},
   pp.~178--188, IEEE Computer Society, 2011.
-  
+
+\bibitem{korczynski2014markov}
+M.~Korczynski and A.~Duda, ``Markov chain fingerprinting to classify encrypted
+  traffic,'' in {\em INFOCOM, 2014 Proceedings IEEE}, pp.~781--789, IEEE, 2014.
+
+\bibitem{campbell1998hidden}
+M.~Campbell, ``Hidden markov and other models for discrete-valued time
+  series,'' {\em Biometrics}, vol.~54, no.~1, p.~394, 1998.
+
 \end{thebibliography}
 
 % biography section
