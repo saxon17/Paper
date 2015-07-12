@@ -646,12 +646,18 @@ Multi-mode refers to one scan can match a group of feature strings, such as Aho-
 Although the payload-based technique can solve the issue of random port, they cannot deal with the encryption protocols, because the signatures of these types of protocols can hardly be found.
 Generally, the main challenges resulting in issues are the encryption protocols, we list issues as follows.
 
-\subsection{Fail in encryption protocol}
+\subsection{Fail in Encryption Protocol}
 
 The encryption protocols get more and more attention in current Internet, as people have kept a watchful eye on the individual privacy.
 More and more applications start to use the encryption protocols (e.g. SSL/TLS) for communication, such as Skype, Alipay, Evernote and Zhihu.
 The signatures of packet payload can hardly be found as the specifications of these proprietary protocols remain private.
 Therefore, the payload-based techniques lose their effectiveness when identifying and classifying such kinds of applications employing SSL/TLS protocols.
+
+\subsection{Low Efficiency}
+
+With the development of Internet bandwidth, the era of Terabit bandwidth has arrived.
+Nowadays, the traffic identification and classification systems usually have to handle Gigabits or Terabits of data per second, which is a critical challenge task for payload-based techniques.
+
 
 \section{analysis of flow-based techniques}
 
