@@ -698,7 +698,11 @@ In this way, it completes the traffic identification and classification task.
 
 \par
 In 2010 Yanfeng Sun et al. proposed a new identification method based on size of packets and clustering algorithm \cite{Yanfeng2010identification}.
-
+They studied the methods of network application identification based on the transition pattern of payload length during the start up phase of the communication.
+These methods didn't need to analyze all the packets, so they could identify the traffic at the early age of the communication.
+But when analyzing more packets, they met ¡°the contents communication problem¡± \cite{waizumi2007network}.
+To solve this problem and adapt the change of the packets, they consulted ¡°the inverse method¡±, and used the inverse of the size of the packets.
+And associating with the improved clustering algorithm K-medoids, they finally improved the validity of our identification method.
 
 \section{analysis of host-based techniques}
 
@@ -1006,6 +1010,11 @@ M.~Campbell, ``Hidden markov and other models for discrete-valued time
 Y.~Sun and S.~Zhang, ``a new identification method based on size of packets and
   clustering algorithm,'' {\em Telecommunications Information}, no.~2,
   pp.~26--28, 2010.
+
+\bibitem{waizumi2007network}
+Y.~Waizumi, A.~Jamalipour, and Y.~Nemoto, ``Network application identification
+  based on transition pattern of packets,'' in {\em IEEE Wireless Rural and
+  Emergency Communications Conference (WRECOM) 2007}, 2007.
   
 \end{thebibliography}
 
