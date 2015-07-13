@@ -734,17 +734,36 @@ $$ $P(X_t = i_t|X_{t-1} = i_{t_1}) = P(X_t = j|X_{t-1} = i) = p_{i-j}$, $$
 with the transition matrix \cite{campbell1998hidden}:
 
 \begin{equation}
-P = \left[ 
+P = \left[
 \begin{array}{lccr}
 p_{1-1} & p_{1-2} & \cdots & p_{1-s}\\
 p_{2-1} & p_{2-2} & \cdots & p_{2-s}\\
 \vdots & \vdots & \ddots & \vdots\\
 p_{s-1} & p_{s-2} & \cdots & p_{s-s}
 \end{array}
-\right]
+\right],
 \end{equation}
 
-where: $\sum$
+where: $\sum_{j=1}^{n} p_{i-j} = 1 $. We denote by:
+
+\begin{equation}
+Q = \left[ 
+\begin{array}{lccr}
+q_1,  &q_2,&\cdots,&q_s
+\end{array}
+\right],
+\end{equation}
+
+the ENter Probability Distribution (ENPD), where $q_i = P(X_t = i)$ at time $t_0$, and we define:
+
+\begin{equation}
+W = \left[
+\begin{array}{lccr}
+w_1,  &w_2,&\cdots,&w_s
+\end{array}
+\right],
+\end{equation}
+
 \subsection{Subsection Heading Here}
 Subsection text here.
 
