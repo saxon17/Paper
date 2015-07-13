@@ -856,8 +856,17 @@ To illustrate the process of the fingerprint creation, consider the following ex
 $
 \\22:2-22:11,22:14-20:,22:-23:
 \\22:2,20:,22:-23:
-\\22:2-22:11,22:14-20:,22:-23:-21:
+\\22:2-22:11,22:14-20:,22:-23:-21:\\
 $
+
+\par
+There are 6 different Markov states in the example.
+The transition probability between states is derived from frequencies observed in the sequences, e.g. $P_{22:2-22:11,22:14} = 1$, while $P_{23:-23:} = 5$.
+The ENPD vector is composed of two nonzero elements, namely $P_{22:2} = 0.67$ and $P_{22:2,20:,22:} = 0.33$, whereas the EXPD vector also contains two non-zero elements $P_{23:} = 0.67$ and $P_{21:} = 0.33$.
+The probabilities are the parameters of the Markov chain fingerprint for the PayPal traffic.
+Based on the model, we can find the probability that an observed SSL/TLS session conveys the PayPal application traffic (cf. Eq. 6).
+The probability that the following sequence of SSL/TLS message types: \\$\\22:2,20:,22:-23:-23:\\$\\ is a PayPal flow is equal to: $P({X_1,...,X_4}) = 0.055$.
+In comparison, the probability computed from the Twitter model (cf. Fig. 5) is equal to 0.003\%, whereas the probability computed from the Skype fingerprint (cf. Fig. 9) is equal to 0.
 
 \subsection{Subsection Heading Here}
 Subsection text here.
