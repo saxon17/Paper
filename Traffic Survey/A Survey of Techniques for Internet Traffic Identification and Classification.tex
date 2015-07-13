@@ -741,6 +741,17 @@ Some features maybe become meaningless, even make classification results worse.
 
 Therefore, one of the most important challenge of flow-based technique is how to select the proper flow statistical features.
 
+\subsection{Uniqueness Proof of Flow Statistical Features}
+
+In \cite{xue2013traffic}, Xue et al. realized some flow-based approaches, including SVM and Bayesian, and deployed them in the backbone network to classify SSL/TLS traffic.
+According to testing in lab, these two models can obtain more than 95\% precision. 
+However, when they deployed them in the backbone network, in which 1 million
+flows are needed to classify within a second in one server, the precision of the two models reduce to less than 5\%.
+Through data analysis, they found that there are too many non-SSL/TLS
+flows that have the similar statistical features as SSL/TLS flow in the
+backbone network.
+In other words, the selected flow statistical features for classifying SSL/TLS traffic are not unique.
+
 \section{analysis of host-based techniques}
 
 \begin{figure}[!ht]
@@ -1058,6 +1069,11 @@ A.~Moore, D.~Zuev, and M.~Crogan, {\em Discriminators for use in flow-based
   classification}.
 \newblock Queen Mary and Westfield College, Department of Computer Science,
   2005.
+  
+\bibitem{xue2013traffic}
+Y.~Xue, D.~Wang, and L.~Zhang, ``Traffic classification: Issues and
+  challenges,'' in {\em Computing, Networking and Communications (ICNC), 2013
+  International Conference on}, pp.~545--549, IEEE, 2013.
 
 \end{thebibliography}
 
