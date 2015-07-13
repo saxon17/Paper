@@ -704,6 +704,17 @@ But when analyzing more packets, they met ¡°the contents communication problem¡±
 To solve this problem and adapt the change of the packets, they consulted ¡°the inverse method¡±, and used the inverse of the size of the packets.
 And associating with the improved clustering algorithm K-medoids, they finally improved the validity of our identification method.
 
+\par
+The technique includes offline training stage and online identify stage, as shown in Fig. 6.
+In training stage, it cuts out and counts the size of the first N packets of every flow, inverses the size and vectorizes them, then clusters the vector set with K-medoids algorithm to get the reference vector set that can represent certain application.
+In identify stage, it does the same work on testing data set to vectorize them and calculate the distance between every testing data vector and reference center vector, then identify the testing data with K-medoids and the output is application type.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{Figure/Process_of_Packets_and_Cluster.jpg}
+\caption{Process of A New Method Based on Size of Packets and Clustering}
+\end{figure}
+
 \section{analysis of host-based techniques}
 
 \begin{figure}[!ht]
