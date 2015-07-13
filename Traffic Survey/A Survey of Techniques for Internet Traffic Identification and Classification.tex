@@ -744,7 +744,7 @@ Therefore, one of the most important challenge of flow-based technique is how to
 \subsection{Uniqueness Proof of Flow Statistical Features}
 
 In \cite{xue2013traffic}, Xue et al. realized some flow-based approaches, including SVM and Bayesian, and deployed them in the backbone network to classify SSL/TLS traffic.
-According to testing in lab, these two models can obtain more than 95\% precision. 
+According to testing in lab, these two models can obtain more than 95\% precision.
 However, when they deployed them in the backbone network, in which 1 million
 flows are needed to classify within a second in one server, the precision of the two models reduce to less than 5\%.
 Through data analysis, they found that there are too many non-SSL/TLS
@@ -838,6 +838,26 @@ w_1,  &w_2,&\cdots,&w_s
 \end{array}
 \right],
 \end{equation}
+
+as the EXit Probability Distribution (EXPD), where $w_i$ represents the probability that the session finishes when it is in state $i$ at time $t_n$. 
+Note that both probability distributions are independent of the Markov chain - they provide the probabilities to enter and quit the Markov chain.
+In traditional Markov chain models, there is an initial state and one or several absorbing states.
+In our case, ENPD defines the probability to enter one of the state of the Markov chain and EXPD gives the probability of quitting the Markov chain from any of its states.
+Based on these definitions, the probability that a sequence of state $X_1$, $...$, $X_T$ representing a single SSL/TLS session occurs is as follow:
+
+\begin{equation}
+$$ $P(\{X_1,...,X_T\}) = q_{i1} \times \prod_{t=2}^{T}p_{i_{t-1}} \times w_{iT}$ $$
+\end{equation}
+
+The resulting probability indicates how a given SSL/TLS sequence of message types during a session is close to a model of an application flow: a larger value means that the SSL/TLS session is closer to the model.
+To illustrate the process of the fingerprint creation, consider the following examples of the message sequences observed during SSL/TLS sessions in a training dataset composed of only three server-side SSL/TLS flows of the PayPal application traffic:
+
+\par
+$
+\\22:2-22:11,22:14-20:,22:-23:
+\\22:2,20:,22:-23:
+\\22:2-22:11,22:14-20:,22:-23:-21:
+$
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -1088,7 +1108,7 @@ A.~Moore, D.~Zuev, and M.~Crogan, {\em Discriminators for use in flow-based
   classification}.
 \newblock Queen Mary and Westfield College, Department of Computer Science,
   2005.
-  
+
 \bibitem{xue2013traffic}
 Y.~Xue, D.~Wang, and L.~Zhang, ``Traffic classification: Issues and
   challenges,'' in {\em Computing, Networking and Communications (ICNC), 2013
