@@ -772,6 +772,8 @@ But existing flow-based techniques don't explicitly explore such information.
 Therefore, how to identify and classify Internet traffic completely and accurately is another mountain need to be conquered.
 
 \section{analysis of host-based techniques}
+The host-based technique refers to set up models from behavioral feature of applications.
+The most representative one is Karagianni et al. proposed in 2005 called BLINC \cite{karagiannis2005blinc}.
 
 \begin{figure}[!ht]
 \centering
@@ -839,7 +841,7 @@ w_1,  &w_2,&\cdots,&w_s
 \right],
 \end{equation}
 
-as the EXit Probability Distribution (EXPD), where $w_i$ represents the probability that the session finishes when it is in state $i$ at time $t_n$. 
+as the EXit Probability Distribution (EXPD), where $w_i$ represents the probability that the session finishes when it is in state $i$ at time $t_n$.
 Note that both probability distributions are independent of the Markov chain - they provide the probabilities to enter and quit the Markov chain.
 In traditional Markov chain models, there is an initial state and one or several absorbing states.
 In our case, ENPD defines the probability to enter one of the state of the Markov chain and EXPD gives the probability of quitting the Markov chain from any of its states.
@@ -1123,6 +1125,11 @@ Y.~Xue, D.~Wang, and L.~Zhang, ``Traffic classification: Issues and
   challenges,'' in {\em Computing, Networking and Communications (ICNC), 2013
   International Conference on}, pp.~545--549, IEEE, 2013.
 
+\bibitem{karagiannis2005blinc}
+T.~Karagiannis, K.~Papagiannaki, and M.~Faloutsos, ``Blinc: multilevel traffic
+  classification in the dark,'' in {\em ACM SIGCOMM Computer Communication
+  Review}, vol.~35, pp.~229--240, ACM, 2005.
+  
 \end{thebibliography}
 
 % biography section
