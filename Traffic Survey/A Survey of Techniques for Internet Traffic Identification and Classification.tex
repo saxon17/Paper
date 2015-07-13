@@ -733,6 +733,13 @@ Far better to build training set in real network and consider identification and
 
 \subsection{Selection of Flow Statistical Features}
 Many statistical features can be used to describe the flow, Moore et al. listed more than 200 flow statistical features for flow-based techniques \cite{moore2005discriminators}.
+Obviously, we can't use all 200 features to describe flow.
+First, many ML models are sensitive to the dimensionality of feature vector.
+If all the proposed 200 flow features are used to train ML classification models, the dimensionality will be too high to classify traffic effectively.
+Second, due to the different protocol specifications, different protocols may have different measures in different flow statistical features.
+Some features maybe become meaningless, even make classification results worse.
+
+Therefore, one of the most important challenge of flow-based technique is how to select the proper flow statistical features.
 
 \section{analysis of host-based techniques}
 
@@ -1051,7 +1058,7 @@ A.~Moore, D.~Zuev, and M.~Crogan, {\em Discriminators for use in flow-based
   classification}.
 \newblock Queen Mary and Westfield College, Department of Computer Science,
   2005.
-  
+
 \end{thebibliography}
 
 % biography section

@@ -606,7 +606,6 @@ For example, utorrent can choose the random non-hold port for data transmission 
 Although port-based traffic identification and classification technique is easy to implement, it's also easy to circumvent.
 So it is rarely to use as a main traffic identification technique now, often as an auxiliary means of other traffic identification and classification technology.
 
-
 \section{Analysis of Payload-based Techniques}
 
 In order to improve the low identification efficiency caused by the port jump technique, payload-based technique was proposed.
@@ -633,15 +632,181 @@ Table II shows the popular payload characteristics of applications.
 \end{table}
 
 \par
-The precision and efficiency of DPI is decided by integrity of characteristics of rule set and feature matching algorithm.
+The precision and efficiency of DPI is decided by integrity of characteristics of rule set and feature matching algorithm, as shown in Fig. 3.
 The feature matching algorithm includes one-mode and multi-mode.
 One-mode refers to one scan can only match one feature string, such as Knuth-Morris-Pratt algorithm \cite{knuth1977fast} and Boyer-Moore algorithm \cite{boyer1977fast}.
 Multi-mode refers to one scan can match a group of feature strings, such as Aho-Corasick algorithm \cite{aho1975efficient}, Commentz-Walter algorithm \cite{commentz1979string} and Aho-Corasick Boyer-Moore algorithm \cite{coit2001towards}.
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{Figure/Principle_of_Feature_Matching_Algorithm.jpg}
+\caption{Principle of Feature Matching Algorithm}
+\end{figure}
+
+Although the payload-based technique can solve the issue of random port, they cannot deal with the encryption protocols, because the signatures of these types of protocols can hardly be found.
+Generally, the main challenges resulting in issues are the encryption protocols, we list issues as follows.
+
+\subsection{Fail in Encryption Protocol}
+
+The encryption protocols get more and more attention in current Internet, as people have kept a watchful eye on the individual privacy.
+More and more applications start to use the encryption protocols (e.g. SSL/TLS) for communication, such as Skype, Alipay, Evernote and Zhihu.
+The signatures of packet payload can hardly be found as the specifications of these proprietary protocols remain private.
+Therefore, the payload-based techniques lose their effectiveness when identifying and classifying such kinds of applications employing SSL/TLS protocols.
+
+\subsection{Low Efficiency}
+
+With the development of Internet bandwidth, the era of Terabit bandwidth has arrived.
+Nowadays, the traffic identification and classification systems usually have to handle Gigabits or Terabits of data per second, which is a critical challenge task for payload-based techniques.
+Due to payload-based techniques have to compare every packet content with characteristics of rule set until the protocol of the flow is determined, it needs higher processing capability to handle packets in high speed network.
+
+Furthermore, as more and more new protocols appear, the size of characteristics of rule set becomes larger and larger, so the payload-based techniques have to compare more signatures or regular expressions, the processing efficiency of payload-based techniques will drop rapidly.
+
 \section{analysis of flow-based techniques}
 
+As the protocols and applications are continuing to evolve, port-based and payload-based techniques lose their effectiveness to the new coming protocols, the flow-based techniques are proposed under this circumstances.
+
+\par
 Just as its name implies, the flow-based technique is built on flows formed by a series of data packets.
-It works by statistic
+It works by seeking and recording general law from data flow in a period of time.
+For example, through the observation, we found most of P2P applications are using TCP protocol and UDP protocol at the same time.
+Besides, it transmits control information by UDP and file content by TCP.
+We use this law as the basis to identify the P2P application.
+Different from the two techniques mentioned in section II and section III, the flow-based technique only analyzes the data flow and it's indifferent to the content of packet.
+Therefore, the flow-based technique is suitable for common Internet traffic identification and classification as well as encrypted traffic.
+
+\par
+Most flow-based techniques use Machine Learning techniques as their identification or classification algorithms, such as Bayesian methods \cite{auld2007bayesian} and SVM Support Vector Machine \cite{yang2011smiler}.
+Most flow-based techniques contain two main stages: training stage and classifying stage, as shown in Fig. 4 and Fig. 5 respectively.
+At the training stage, the flow-based techniques use features extracted from the training data set to train identification and classification model.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.75]{Figure/Process_of_Training.jpg}
+\caption{Process of Training Stage in Flow-based Techniques}
+\end{figure}
+
+\par
+At the identification and classification stage, the flow-based techniques capture packets at first, then divide and refactor these packets to form flow.
+After that, extracting features to matching models obtained from training stage to determine the type of protocols and applications.
+In this way, it completes the traffic identification and classification task.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.66]{Figure/Process_of_Identification_or_Classification.jpg}
+\caption{Process of Identification or Classification Stage in Flow-based Techniques}
+\end{figure}
+
+\par
+In 2010 Yanfeng Sun et al. proposed a new identification method based on size of packets and clustering algorithm \cite{Yanfeng2010identification}.
+They studied the methods of network application identification based on the transition pattern of payload length during the start up phase of the communication.
+These methods didn't need to analyze all the packets, so they could identify the traffic at the early age of the communication.
+But when analyzing more packets, they met ¡°the contents communication problem¡± \cite{waizumi2007network}.
+To solve this problem and adapt the change of the packets, they consulted ¡°the inverse method¡±, and used the inverse of the size of the packets.
+And associating with the improved clustering algorithm K-medoids, they finally improved the validity of our identification method.
+
+\par
+The technique includes offline training stage and online identify stage, as shown in Fig. 6.
+In training stage, it cuts out and counts the size of the first N packets of every flow, inverses the size and vectorizes them, then clusters the vector set with K-medoids algorithm to get the reference vector set that can represent certain application.
+In identify stage, it does the same work on testing data set to vectorize them and calculate the distance between every testing data vector and reference center vector, then identify the testing data with K-medoids and the output is application type.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.7]{Figure/Process_of_Packets_and_Cluster.jpg}
+\caption{Process of A New Method Based on Size of Packets and Clustering}
+\end{figure}
+
+\par
+The flow-based techniques are the hot spot in traffic identification and classification research area.
+Although it can solve the issues of proprietary encryption protocols, the flow-based techniques are far away from being usable due to the following reasons.
+
+\subsection{Selection of Training Set}
+In order to provide more training information, the training set usually contains traffic generated by various protocols.
+However, at the training stage, the target protocol can be hardly highlighted, if its traffic only occupy a small proportion in the training set.
+Therefore, we can increase proportion of certain protocol traffic artificially.
+But the artificial training set can't describe the real network environment.
+So building the appropriate training set is a tradeoff process.
+The training set should be built based on the application context and network environment.
+
+\par
+Generally, it can be said that the training set plays an important part in flow-based techniques, we should do our best to raise the accuracy of model that got by training set.
+Far better to build training set in real network and consider identification and classification context at the same time.
+
+\subsection{Selection of Flow Statistical Features}
+Many statistical features can be used to describe the flow, Moore et al. listed more than 200 flow statistical features for flow-based techniques \cite{moore2005discriminators}.
+Obviously, we can't use all 200 features to describe flow.
+First, many ML models are sensitive to the dimensionality of feature vector.
+If all the proposed 200 flow features are used to train ML classification models, the dimensionality will be too high to classify traffic effectively. 
+Second, due to the different protocol specifications, different protocols may have different measures in different flow statistical features.
+Some features maybe become meaningless, even make classification results worse.
+
+Therefore, one of the most important
+\section{analysis of host-based techniques}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.66]{Figure/Process_of_Training_host-based.jpg}
+\caption{Process of Training Stage in Host-based Techniques}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.66]{Figure/Process_of_Identification_or_Classification_host-based.jpg}
+\caption{Process of Training Stage in Host-based Techniques}
+\end{figure}
+
+More specifically, in 2014 Maciej proposed stochastic fingerprints for application traffic flows conveyed in Secure Socket Layer/Transport Layer Security (SSL/TLS) sessions \cite{korczynski2014markov}.
+The fingerprints are based on first-order homogeneous Markov chains for which it identifies the parameters from observed training application traces.
+As the fingerprint parameters of chosen applications considerably differ, the method results in a very good accuracy of application discrimination and provides a possibility of detecting abnormal SSL/TLS sessions.
+
+\par
+We consider discrete-time random variable $X_t$ for any $t = t_0, t_1, ..., t_n \in T$.
+It takes values $i_t \in \{1, ..., s\}$, where it is either an SSL/TLS message type (e.g. 22:2) or a sequence of the SSL/TLS message types transmitted in a single TCP segment (e.g. 22:11,22:14).
+
+\par
+We assume that $X_t$ is a first-order Markov chain \cite{campbell1998hidden}:
+
+\begin{equation}
+$$ $P(X_t = i_t|X_{t-1}) = i_{t-1}, X_{t-2} = i_{t-2}, ..., X_1 = i_1) = P(X_t = i_t|X_{t-1} = i_{t-1})$. $$
+\end{equation}
+
+We further assume that the Markov chain is homogeneous, i.e. a state transition from time $t-1$ to time $t$ is time-invariant:
+
+\begin{equation}
+$$ $P(X_t = i_t|X_{t-1} = i_{t_1}) = P(X_t = j|X_{t-1} = i) = p_{i-j}$, $$
+\end{equation}
+
+with the transition matrix \cite{campbell1998hidden}:
+
+\begin{equation}
+P = \left[
+\begin{array}{lccr}
+p_{1-1} & p_{1-2} & \cdots & p_{1-s}\\
+p_{2-1} & p_{2-2} & \cdots & p_{2-s}\\
+\vdots & \vdots & \ddots & \vdots\\
+p_{s-1} & p_{s-2} & \cdots & p_{s-s}
+\end{array}
+\right],
+\end{equation}
+
+where: $\sum_{j=1}^{n} p_{i-j} = 1 $. We denote by:
+
+\begin{equation}
+Q = \left[
+\begin{array}{lccr}
+q_1,  &q_2,&\cdots,&q_s
+\end{array}
+\right],
+\end{equation}
+
+the ENter Probability Distribution (ENPD), where $q_i = P(X_t = i)$ at time $t_0$, and we define:
+
+\begin{equation}
+W = \left[
+\begin{array}{lccr}
+w_1,  &w_2,&\cdots,&w_s
+\end{array}
+\right],
+\end{equation}
 
 \subsection{Subsection Heading Here}
 Subsection text here.
@@ -806,7 +971,7 @@ The authors would like to thank...
 % <OR> manually copy in the resultant .bbl file
 % set second argument of \begin to the number of references
 % (used to reserve space for the reference number labels box)
-\begin{thebibliography}{2}
+\begin{thebibliography}{20}
 
 \bibitem{IEEEhowto:CNNIC}
 CNNIC: Statistics Report of Development of China Internet Network. (Jan 2015). [Online]. Available:
@@ -858,6 +1023,41 @@ C.~J. Coit, S.~Staniford, and J.~McAlerney, ``Towards faster string matching
   Information Survivability Conference \&amp; Exposition II, 2001. DISCEX'01.
   Proceedings}, vol.~1, pp.~367--373, IEEE, 2001.
 
+\bibitem{auld2007bayesian}
+T.~Auld, A.~W. Moore, and S.~F. Gull, ``Bayesian neural networks for internet
+  traffic classification,'' {\em Neural Networks, IEEE Transactions on},
+  vol.~18, no.~1, pp.~223--239, 2007.
+
+\bibitem{yang2011smiler}
+B.~Yang, G.~Hou, L.~Ruan, Y.~Xue, and J.~Li, ``Smiler: towards practical online
+  traffic classification,'' in {\em Proceedings of the 2011 ACM/IEEE Seventh
+  Symposium on Architectures for Networking and Communications Systems},
+  pp.~178--188, IEEE Computer Society, 2011.
+
+\bibitem{korczynski2014markov}
+M.~Korczynski and A.~Duda, ``Markov chain fingerprinting to classify encrypted
+  traffic,'' in {\em INFOCOM, 2014 Proceedings IEEE}, pp.~781--789, IEEE, 2014.
+
+\bibitem{campbell1998hidden}
+M.~Campbell, ``Hidden markov and other models for discrete-valued time
+  series,'' {\em Biometrics}, vol.~54, no.~1, p.~394, 1998.
+
+\bibitem{Yanfeng2010identification}
+Y.~Sun and S.~Zhang, ``a new identification method based on size of packets and
+  clustering algorithm,'' {\em Telecommunications Information}, no.~2,
+  pp.~26--28, 2010.
+
+\bibitem{waizumi2007network}
+Y.~Waizumi, A.~Jamalipour, and Y.~Nemoto, ``Network application identification
+  based on transition pattern of packets,'' in {\em IEEE Wireless Rural and
+  Emergency Communications Conference (WRECOM) 2007}, 2007.
+
+\bibitem{moore2005discriminators}
+A.~Moore, D.~Zuev, and M.~Crogan, {\em Discriminators for use in flow-based
+  classification}.
+\newblock Queen Mary and Westfield College, Department of Computer Science,
+  2005.
+  
 \end{thebibliography}
 
 % biography section
