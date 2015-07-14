@@ -774,6 +774,11 @@ Therefore, how to identify and classify Internet traffic completely and accurate
 \section{analysis of host-based techniques}
 The host-based technique refers to set up models from behavioral feature of applications.
 The most representative one is Karagianni et al. proposed in 2005 called BLINC \cite{karagiannis2005blinc}.
+BLINC set up the fingerprint model by observing features of IP address and port number when one application communicated with others.
+It builds up fingerprint library includes many fingerprint models of applications.
+When observing one application's IP address and port number, we can match these information to every fingerprint model, and mark the application which corresponds model has highest matching-degree as the identification result.
+BLINC only need to observe and record source IP address, destination IP address, source port and destination port to run method, without concern about content of port and payload.
+But this method needs a period of time to do some data statistication, so real-time identification and classification will be a problem.
 
 \begin{figure}[!ht]
 \centering
@@ -1129,7 +1134,7 @@ Y.~Xue, D.~Wang, and L.~Zhang, ``Traffic classification: Issues and
 T.~Karagiannis, K.~Papagiannaki, and M.~Faloutsos, ``Blinc: multilevel traffic
   classification in the dark,'' in {\em ACM SIGCOMM Computer Communication
   Review}, vol.~35, pp.~229--240, ACM, 2005.
-  
+
 \end{thebibliography}
 
 % biography section
