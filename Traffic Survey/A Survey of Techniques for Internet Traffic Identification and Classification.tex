@@ -814,7 +814,7 @@ P(X_t = i_t|X_{t-1} &= i_{t-1}, X_{t-2} = i_{t-2}, ..., X_1 = i_1)\\
 &= P(X_t = i_t|X_{t-1} = i_{t-1}).
 \end{split}
 \end{equation}
-We further assume that the Markov chain is homogeneous, i.e. a state transition from time $t-1$ to time $t$ is time-invariant:
+we further assume that the Markov chain is homogeneous, i.e. a state transition from time $t-1$ to time $t$ is time-invariant:
 \begin{equation}
 \begin{split}
 P(X_t=i_t|X_{t-1}=i_{t-1}) & =P(X_t=j|X_{t-1}=i)\\
@@ -909,7 +909,14 @@ And in identification stage, most user tend to use many applications at the same
 Therefore, how to ease affection of noise will be a big challenge for host-based techniques.
 
 \subsection{Network Address Translation}
+The host-based techniques lost their effectiveness as long as monitored host hides behind the NAT, because these techniques classify traffic based on the knowledge of the traffic sent or received
+by a host.
 
+\subsection{Resist Attacks}
+It is not hard to find an approach to attack the host-based techniques.
+For BLINC, attacker can construct legal quads $\left[srcIP, desIP, srcPort, desPort\right]$ to imitate behavior that lead the method to set up uncorrect fingerprint model.
+For Markov chain fingerprint, attacker can also forge the model by observing legal behavior features.
+Therefore, how to resist various attacks is a nerve-wracking problem. 
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
