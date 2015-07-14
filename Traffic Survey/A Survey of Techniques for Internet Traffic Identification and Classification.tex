@@ -127,6 +127,7 @@
 %
 \ifCLASSINFOpdf
    \usepackage{graphicx}
+   \usepackage{mathtools}
   % declare the path(s) where your graphic files are
   % \graphicspath{{../pdf/}{../jpeg/}}
   % and their extensions so you won't have to specify these with
@@ -780,6 +781,11 @@ When observing one application's IP address and port number, we can match these 
 BLINC only need to observe and record source IP address, destination IP address, source port and destination port to run method, without concern about content of port and payload.
 But this method needs a period of time to do some data statistication, so real-time identification and classification will be a problem.
 
+Compare to flow-based techniques, the host-based techniques also contain two main stages: training stage and classifying stage, as shown in Fig. 7 and Fig. 8.
+In fact, these techniques also employ statistical features as their input, while the major difference from flow-based techniques is that the hostbased techniques employ the features abstracted from the multi-flows.
+To obtain the features from multi-flows, the first step is to integrate flows. It is obvious that integrating flows based on a host is most feasible way.
+This is why we call these techniques as host-based.
+
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.66]{Figure/Process_of_Training_host-based.jpg}
@@ -789,7 +795,7 @@ But this method needs a period of time to do some data statistication, so real-t
 \begin{figure}[!ht]
 \centering
 \includegraphics[scale=0.66]{Figure/Process_of_Identification_or_Classification_host-based.jpg}
-\caption{Process of Training Stage in Host-based Techniques}
+\caption{Process of Identification or Classification Stage in Host-based Techniques}
 \end{figure}
 
 More specifically, in 2014 Maciej proposed stochastic fingerprints for application traffic flows conveyed in Secure Socket Layer/Transport Layer Security (SSL/TLS) sessions \cite{korczynski2014markov}.
@@ -802,19 +808,20 @@ It takes values $i_t \in \{1, ..., s\}$, where it is either an SSL/TLS message t
 
 \par
 We assume that $X_t$ is a first-order Markov chain \cite{campbell1998hidden}:
-
 \begin{equation}
-$$ $P(X_t = i_t|X_{t-1}) = i_{t-1}, X_{t-2} = i_{t-2}, ..., X_1 = i_1) = P(X_t = i_t|X_{t-1} = i_{t-1})$. $$
+\begin{split}
+P(X_t = i_t|X_{t-1} &= i_{t-1}, X_{t-2} = i_{t-2}, ..., X_1 = i_1)\\
+&= P(X_t = i_t|X_{t-1} = i_{t-1}).
+\end{split}
 \end{equation}
-
 We further assume that the Markov chain is homogeneous, i.e. a state transition from time $t-1$ to time $t$ is time-invariant:
-
 \begin{equation}
-$$ $P(X_t = i_t|X_{t-1} = i_{t_1}) = P(X_t = j|X_{t-1} = i) = p_{i-j}$, $$
+\begin{split}
+P(X_t=i_t|X_{t-1}=i_{t-1}) & =P(X_t=j|X_{t-1}=i)\\
+&=p_{i-j},
+\end{split}
 \end{equation}
-
 with the transition matrix \cite{campbell1998hidden}:
-
 \begin{equation}
 P = \left[
 \begin{array}{lccr}
@@ -825,9 +832,7 @@ p_{s-1} & p_{s-2} & \cdots & p_{s-s}
 \end{array}
 \right],
 \end{equation}
-
 where: $\sum_{j=1}^{n} p_{i-j} = 1 $. We denote by:
-
 \begin{equation}
 Q = \left[
 \begin{array}{lccr}
@@ -835,9 +840,7 @@ q_1,  &q_2,&\cdots,&q_s
 \end{array}
 \right],
 \end{equation}
-
 the ENter Probability Distribution (ENPD), where $q_i = P(X_t = i)$ at time $t_0$, and we define:
-
 \begin{equation}
 W = \left[
 \begin{array}{lccr}
@@ -845,17 +848,16 @@ w_1,  &w_2,&\cdots,&w_s
 \end{array}
 \right],
 \end{equation}
-
 as the EXit Probability Distribution (EXPD), where $w_i$ represents the probability that the session finishes when it is in state $i$ at time $t_n$.
 Note that both probability distributions are independent of the Markov chain - they provide the probabilities to enter and quit the Markov chain.
 In traditional Markov chain models, there is an initial state and one or several absorbing states.
 In our case, ENPD defines the probability to enter one of the state of the Markov chain and EXPD gives the probability of quitting the Markov chain from any of its states.
 Based on these definitions, the probability that a sequence of state $X_1$, $...$, $X_T$ representing a single SSL/TLS session occurs is as follow:
-
 \begin{equation}
-$$ $P(\{X_1,...,X_T\}) = q_{i1} \times \prod_{t=2}^{T}p_{i_{t-1}} \times w_{iT}$ $$
+P(\{X_1,...,X_T\}) = q_{i1} \times \prod_{t=2}^{T}p_{i_{t-1}} \times w_{iT}.
 \end{equation}
 
+\par
 The resulting probability indicates how a given SSL/TLS sequence of message types during a session is close to a model of an application flow: a larger value means that the SSL/TLS session is closer to the model.
 To illustrate the process of the fingerprint creation, consider the following examples of the message sequences observed during SSL/TLS sessions in a training dataset composed of only three server-side SSL/TLS flows of the PayPal application traffic:
 
@@ -863,27 +865,45 @@ To illustrate the process of the fingerprint creation, consider the following ex
 $
 \\22:2-22:11,22:14-20:,22:-23:
 \\22:2,20:,22:-23:
-\\22:2-22:11,22:14-20:,22:-23:-21:\\
+\\22:2-22:11,22:14-20:,22:-23:-23:-21:\\
 $
 
 \par
 There are 6 different Markov states in the example.
-The transition probability between states is derived from frequencies observed in the sequences, e.g. $P_{22:2-22:11,22:14} = 1$, while $P_{23:-23:} = 5$.
+The transition probability between states is derived from frequencies observed in the sequences, e.g. $P_{22:2-22:11,22:14} = 1$, while $P_{23:-23:} = 0.5$.
 The ENPD vector is composed of two nonzero elements, namely $P_{22:2} = 0.67$ and $P_{22:2,20:,22:} = 0.33$, whereas the EXPD vector also contains two non-zero elements $P_{23:} = 0.67$ and $P_{21:} = 0.33$.
 The probabilities are the parameters of the Markov chain fingerprint for the PayPal traffic.
 Based on the model, we can find the probability that an observed SSL/TLS session conveys the PayPal application traffic (cf. Eq. 6).
-The probability that the following sequence of SSL/TLS message types: \\$\\22:2,20:,22:-23:-23:\\$\\ is a PayPal flow is equal to: $P({X_1,...,X_4}) = 0.055$.
-In comparison, the probability computed from the Twitter model (cf. Fig. 5) is equal to 0.003\%, whereas the probability computed from the Skype fingerprint (cf. Fig. 9) is equal to 0.
+The probability that the following sequence of SSL/TLS message types: \\$\\22:2,20:,22:-23:-23:-23:\\$\\ is a PayPal flow is equal to: $P(\{X_1,...,X_4\})=0.055$.
+In comparison, the probability computed from the Twitter fingerprint model (cf. Fig. 9) is equal to 0.003\%, whereas the probability computed from the Skype fingerprint model (cf. Fig. 10) is equal to 0.
 
-\subsection{Subsection Heading Here}
-Subsection text here.
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.25]{Figure/Parameters_of_the_Fingerprint_for_Twitter.jpg}
+\caption{Parameters of the Fingerprint for Twitter}
+\end{figure}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.25]{Figure/Parameters_of_the_Fingerprint_for_Skype.jpg}
+\caption{Parameters of the Fingerprint for Skype}
+\end{figure}
+
+\par
+Even though the host-based techniques are most advanced nowadays, they can classify all the traffic generated by an application, they are still suffering from the following issues.
+
+\subsection{Threaten from Big Data}
+The host-based techniques maintain the host information of either inside or outside of gateway, even both, in order to obtain enough features from multi-flows.
+If the host-based techniques are deployed in backbone network, there will be hundreds of millions of hosts that are needed to be monitored.
+And even each host in backbone network will generate plenty of traffic.
+So the host-based identification and classification system will run out of computing and storage resource, and break down in the end.
+
+\subsection{Unknown New Applications}
+As the network and protocols are developing rapidly, there are thousands of new applications published constantly, and they are more and more complicated.
+The host-based techniques are based on the existing applications, that is to say, with regard to new applications, there is no corresponding model in our library, we can't identify or classify that new application traffic.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
-
-\subsubsection{Subsubsection Heading Here}
-Subsubsection text here.
-
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
