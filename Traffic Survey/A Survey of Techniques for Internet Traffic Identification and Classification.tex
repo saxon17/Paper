@@ -916,7 +916,7 @@ by a host.
 It is not hard to find an approach to attack the host-based techniques.
 For BLINC, attacker can construct legal quads $\left[srcIP, desIP, srcPort, desPort\right]$ to imitate behavior that lead the method to set up uncorrect fingerprint model.
 For Markov chain fingerprint, attacker can also forge the model by observing legal behavior features \cite{rahman2011making}.
-Therefore, how to resist various attacks is a nerve-wracking problem. 
+Therefore, how to resist various attacks is a nerve-wracking problem.
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
@@ -1003,7 +1003,27 @@ Therefore, how to resist various attacks is a nerve-wracking problem.
 % floats. This can be corrected via the \fnbelowfloat command of the
 % stfloats package.
 
+\section{Common Issues and challenges}
+We analyze the challenges and issues of every existing traffic identification and classification techniques in the previous sections.
+Through our analysis and summary, we would like to list some common issues and challenges of traffic techniques in this section.
 
+\subsection{Traffic Evolution}
+Thousands of researches suggest there is no perfect identification and classification technique, that is to say no method can get 100 percent accuracy over all traffic.
+In addition to the three historical developments (non-standard ports, disguised ports, NATs) that have increased difficulty of classifying traffic over last several decades, three more trends in this decade have further hindered the ability to classify traffic:
+
+\subsubsection{Protocol Encapsulation} Such as traffic tunneled inside HTTP, accurate identification of which requires more invasive payload inspection and complex protocol analysis in the classifier.
+\subsubsection{Encryption} Nowadays, more and more applications use SSL/TLS to encrypt traffic on communication, limiting the ability to extract features to those that remain after encryption.
+\subsubsection{Multiple Service Channels} Multi-channel applications that merit different service qualities or security policies within the application require identifying not only the network application associated with a traffic flow, but also the specific task within the application (e.g., signaling, video streaming, chat, data transfer, voice call).
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[scale=0.5]{Figure/Timer_Shaft.jpg}
+\caption{Timer Shaft}
+\end{figure}
+
+With the development of traffic and protocols, various types of techniques were published to classify them, as shown in Fig. 11.
+The traffic evolution is still going on, what is the next generation of classify technique?
+That is a hot research area for us.
 
 \section{Conclusion}
 The conclusion goes here.
@@ -1177,7 +1197,7 @@ K.~Rahman, K.~S. Balagani, V.~V. Phoha, {\em et~al.}, ``Making impostor pass
   cyber-behavioral verification with keystrokes,'' in {\em Computer Vision and
   Pattern Recognition Workshops (CVPRW), 2011 IEEE Computer Society Conference
   on}, pp.~31--38, IEEE, 2011.
-  
+
 \end{thebibliography}
 
 % biography section
