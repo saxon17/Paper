@@ -903,6 +903,13 @@ As the network and protocols are developing rapidly, there are thousands of new 
 The host-based techniques are based on the existing applications, that is to say, with regard to new applications, there is no corresponding model in our library, we can't identify or classify that new application traffic.
 
 \subsection{Noise}
+In order to get correct fingerprint model, we require the training set is pure, that is to say, the monitored host only use one application at a moment.
+But in reality, this situation may hardly controlled.
+And in identification stage, most user tend to use many applications at the same time, it brings noise to identification inevitably.
+Therefore, how to ease affection of noise will be a big challenge for host-based techniques.
+
+\subsection{Network Address Translation}
+
 
 % needed in second column of first page if using \IEEEpubid
 %\IEEEpubidadjcol
