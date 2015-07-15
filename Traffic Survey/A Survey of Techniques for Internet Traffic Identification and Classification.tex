@@ -571,7 +571,8 @@ Section II explains port-based technique and analyzes its issues.
 Section III explains payload-based technique and presents its drawbacks.
 Section IV and Section V focus on flow-based and host-based techniques and dwell on their challenges.
 Then it is followed by section VI with the general challenges of traffic identification and classification.
-Section VII makes some final remarks on traffic analysis, provides some recommendations for solving the current issues, and conclude the paper in the end.
+Section VII makes some final remarks on traffic analysis and provides some recommendations for solving the current issues.
+Finally, we conclude the paper in the end.
 
 \section{Analysis of Port-based Techniques}
 
@@ -1048,8 +1049,18 @@ General-purpose graphical processing units (GPGPUs) have introduced a new comput
 Parallelism can also be pursued at a higher layer of a traffic classification architecture, using multithreading to pipeline the typical execution sequence: packet filtering, packet classification and output.
 Alternatively, replicating classification modules on different cores may enable per-flow load balancing to achieve even higher scalability \cite{dainotti2012issues}.
 
-\section{Summary and Recommendations}
+\section{Final Remarks and Recommendations}
+We provide a comprehensive analysis of Internet traffic identification and classification techniques, and point out several issues and challenges in the previous sections.
+As Internet traffic classification becomes a more and more tough task, we outline some recommendations to improve the performance of traffic classification system as follows:
 
+\subsection{Cleverer Learning}
+Even though thousands of new machine learning algorithms are proposed every year, there is no a mature practical one which can be deployed on backbone network yet.
+Therefore, to develop a cleverer machine learning algorithm to be self-adaptive to changes of deployment and emerging of new sophisticated applications is a promising work.
+
+\subsection{Parallel Method}
+\subsection{Synthesized Method}
+
+\section{Conclusion}
 
 
 
