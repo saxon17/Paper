@@ -1042,6 +1042,12 @@ Classifying traffic of Gigabits per second is still a fairly challenging, while 
 To identify or classify Internet traffic in such high speed network, maybe only to improve the processing performance of existing techniques can't complete the task, we need to ask parallel hardware architectures and distributed techniques for help.
 
 \subsection{Scalability}
+Another challenging trend in Internet evolution is the tremendous growth of the infrastructure in every dimension.
+For example, architectural design choices influence these scalability trade-offs.
+In the next decade, traffic classification systems will have to be redesigned to run on multicore hardware, targeting low-cost but highly parallel architectures.
+General-purpose graphical processing units (GPGPUs) have introduced a new computing paradigm, allowing scientific and computationally intensive applications to achieve orders of magnitude in performance improvements with minimal hardware costs.
+Parallelism can also be pursued at a higher layer of a traffic classification architecture, using multithreading to pipeline the typical execution sequence: packet filtering, packet classification and output.
+Alternatively, replicating classification modules on different cores may enable per-flow load balancing to achieve even higher scalability \cite{dainotti2012issues}.
 
 \section{Summary and Recommendations}
 
