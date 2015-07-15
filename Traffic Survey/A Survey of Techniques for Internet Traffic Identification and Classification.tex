@@ -1058,10 +1058,20 @@ Even though thousands of new machine learning algorithms are proposed every year
 Therefore, to develop a cleverer machine learning algorithm to be self-adaptive to changes of deployment and emerging of new sophisticated applications is a promising work.
 
 \subsection{Parallel Method}
+In the previous sections, we analyzed the current Internet traffic classification systems usually have to handle Gigabits or Terabits per second.
+Multi-core processors \cite{ciresan2012multi} or distributed processing architectures may be employed to assist to solve this problem.
+Although there are some multi-core processors or distributed processing architectures exist, how to balance traffic to every processing unit as traffic remain increasingly growing is still one issue that needed to be carefully considered.
+
 \subsection{Synthesized Method}
+Although the development of traffic and applications is rapidly, there are still a large proportion of protocols that can be easily identified and classified.
+So a synthesized method is likely to get high accuracy rate in Internet traffic identification or classification.
+We design a hierarchical traffic classification architecture to identify large part of traffic by using efficient simple technique at first, then identify the little part of the sophisticated applications.
+We can further integrate this hierarchical architecture to parallel method to increase the effectiveness and performance of identification and classification systems.
 
 \section{Conclusion}
-
+With the development of Internet, traffic identification and classification still remains one hot topic in research and industry.
+In this paper, we analyze the existing traffic classification techniques along with the order of evolution of traffic and applications.
+We focus on issues and challenges of these techniques, and outline some recommendations  to improve the performance at last.
 
 
 % if have a single appendix:
@@ -1233,6 +1243,11 @@ A.~Dainotti, A.~Pescape, and K.~C. Claffy, ``Issues and future directions in
   traffic classification,'' {\em Network, IEEE}, vol.~26, no.~1, pp.~35--40,
   2012.
 
+\bibitem{ciresan2012multi}
+D.~Ciresan, U.~Meier, and J.~Schmidhuber, ``Multi-column deep neural networks
+  for image classification,'' in {\em Computer Vision and Pattern Recognition
+  (CVPR), 2012 IEEE Conference on}, pp.~3642--3649, IEEE, 2012.
+  
 \end{thebibliography}
 
 % biography section
